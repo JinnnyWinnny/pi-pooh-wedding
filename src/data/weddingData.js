@@ -28,8 +28,7 @@ export const weddingData = {
       father: "이상록",
       mother: "명주현",
       relation: "딸",
-      photo:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80",
+      photo: mem("babyJenny.jpg"),
       bio: "1997년 02월 19일",
       subbio: "호기심을 잃지 않고 꾸준히 배우며 성장하는 사람",
       tags: ["ISTJ", "테니스"],

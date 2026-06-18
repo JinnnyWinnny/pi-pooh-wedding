@@ -999,7 +999,7 @@ input {
   flex-direction: column;
   align-items: center;
   gap: 1.4rem;
-  margin: 2rem 1.25rem 0;
+  margin: 2rem 0;
   padding: 0 0.75rem;
 }
 
@@ -1205,6 +1205,19 @@ input {
 
 .dog-treat-btn:active {
   transform: scale(0.88);
+}
+
+.dog-treat-count {
+  margin: 0.45rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: rgba(234, 240, 236, 0.55);
+}
+
+.dog-treat-count b {
+  color: rgba(234, 240, 236, 0.92);
+  font-weight: 600;
 }
 
 .treat-bone {

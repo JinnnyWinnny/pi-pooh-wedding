@@ -13,9 +13,11 @@ function makeBones() {
 
 export default function DogTreat() {
   const [bones, setBones] = useState([]);
+  const [treatCount, setTreatCount] = useState(0);
   const timerRef = useRef(null);
 
   const giveTreat = useCallback(() => {
+    setTreatCount((n) => n + 1);
     if (timerRef.current) clearTimeout(timerRef.current);
     setBones(makeBones());
     timerRef.current = setTimeout(() => {
@@ -56,6 +58,10 @@ export default function DogTreat() {
           🦴
         </button>
       </div>
+
+      <p className="dog-treat-count" aria-live="polite">
+        얌얌 총 <b>{treatCount}</b>개의 간식을 받았어요!
+      </p>
     </div>
   );
 }
