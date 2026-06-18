@@ -36,7 +36,7 @@ function calcLeft(targetDate) {
   return { days, hours, minutes, seconds, done: false };
 }
 
-export default function CountdownCalendar({ date, groomShort, brideShort }) {
+export default function CountdownCalendar({ date, venue, groomShort, brideShort }) {
   const target = new Date(date.year, date.month - 1, date.day, date.hour, date.minute, 0);
   const left = useCountdown(target);
 
@@ -61,6 +61,9 @@ export default function CountdownCalendar({ date, groomShort, brideShort }) {
         <p className="save-sub">
           {date.year}. {String(date.month).padStart(2, "0")}. {String(date.day).padStart(2, "0")}{" "}
           ({date.weekday}) · {date.time}
+        </p>
+        <p className="save-place">
+          {venue.name} {venue.hall}
         </p>
       </ScrollReveal>
 

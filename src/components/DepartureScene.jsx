@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { weddingData } from "../data/weddingData";
+import { assetUrl } from "../utils/assetUrl";
 
 function SpeechBubble({ from, text, delay }) {
   return (
@@ -38,7 +39,7 @@ export default function DepartureScene({ onDepart }) {
       >
         <motion.img
           className="intro-family"
-          src="/dogs/pp_marriage.png"
+          src={assetUrl("dogs/pp_marriage.png")}
           alt="파이, 푸, 석준, 지은"
           initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}

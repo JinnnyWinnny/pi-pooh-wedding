@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { assetUrl } from "../utils/assetUrl";
 
 const STEPS = [
   "이쪽이에요! 천천히 따라와 주세요",
@@ -52,7 +53,7 @@ export default function PawWalkScene({ onArrive }) {
           animate={{ left: "78%" }}
           transition={{ duration: 3.8, ease: "easeInOut" }}
         >
-          <img src="/dogs/pp.png" alt="파이와 푸" />
+          <img src={assetUrl("dogs/pp.png")} alt="파이와 푸" />
         </motion.div>
       </div>
 

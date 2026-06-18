@@ -16,10 +16,9 @@
   --sky-3: #6fb2a0;
   --line: rgba(21, 33, 31, 0.16);
   --line-soft: rgba(21, 33, 31, 0.08);
-  --serif: "Fraunces", "Times New Roman", serif;
-  --mono: "Space Mono", "Courier New", monospace;
-  --sans:
-    "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --serif: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --mono: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --sans: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
 * {
@@ -33,6 +32,7 @@ html {
 body {
   margin: 0;
   font-family: var(--sans);
+  font-weight: 300;
   color: var(--ink);
   background: var(--paper);
   -webkit-font-smoothing: antialiased;
@@ -75,7 +75,8 @@ input {
 .kicker {
   font-family: var(--mono);
   font-size: 0.7rem;
-  letter-spacing: 0.32em;
+  font-weight: 300;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
 }
 
@@ -744,33 +745,64 @@ input {
 
 /* hero */
 .inv-hero {
-  text-align: center;
-  padding-top: 3rem;
+  margin: 0 -1.25rem;
+  padding: 0;
+  border-bottom: none;
 }
+
+.hero-bg {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background-image: var(--hero-bg);
+  background-size: cover;
+  background-position: center 35%;
+  background-repeat: no-repeat;
+  border-radius: 0 0 22px 22px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px -18px rgba(22, 19, 15, 0.28);
+}
+
+.hero-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  padding: 1.75rem 1.25rem 0;
+  text-align: center;
+}
+
 .inv-hero .names {
   font-family: var(--serif);
   font-weight: 300;
-  font-size: clamp(2.6rem, 13vw, 4rem);
-  line-height: 1.05;
+  font-size: clamp(2.4rem, 12vw, 3.6rem);
+  line-height: 1.08;
   letter-spacing: -0.02em;
+  color: var(--ink);
 }
+
 .inv-hero .names .amp {
   font-style: italic;
   color: var(--grass);
   display: block;
   font-size: 0.55em;
-  margin: 0.1em 0;
+  margin: 0.12em 0;
 }
+
 .inv-hero .when {
-  margin: 1.6rem 0 0;
+  margin: 1rem 0 0;
   font-family: var(--mono);
   font-size: 0.82rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
+  color: var(--ink);
 }
+
 .inv-hero .where {
-  margin: 0.5rem 0 0;
+  margin: 0.45rem 0 0;
   color: var(--ink-soft);
   font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 /* save the date */
@@ -799,10 +831,17 @@ input {
   opacity: 0.8;
 }
 .save-sub {
-  margin: 0.8rem 0 1.8rem;
+  margin: 0.8rem 0 0;
   font-family: var(--mono);
   font-size: 0.78rem;
   letter-spacing: 0.1em;
+  color: var(--ink-soft);
+}
+
+.save-place {
+  margin: 0.45rem 0 1.8rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
   color: var(--ink-soft);
 }
 
@@ -986,8 +1025,21 @@ input {
 .about-name {
   margin: 0.4rem 0 0;
   font-family: var(--serif);
-  font-weight: 400;
-  font-size: 1.4rem;
+  font-weight: 300;
+  font-size: 1.35rem;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+.about-name-line {
+  font-weight: 300;
+  opacity: 0.85;
+}
+
+.about-name-slash {
+  opacity: 0.4;
+  margin: 0 0.15em;
+  font-style: normal;
 }
 
 .about-bio {
@@ -997,10 +1049,37 @@ input {
   color: var(--ink-soft);
 }
 
+.about-subbio {
+  margin: 0.45rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: var(--ink-faint);
+}
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.about-tag {
+  display: inline-block;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--sea-deep);
+  background: rgba(31, 138, 166, 0.1);
+  border: 1px solid rgba(31, 138, 166, 0.18);
+}
+
 .about-dogs-card {
   background: var(--ink);
   color: var(--paper);
   padding-bottom: 1.2rem;
+  overflow: visible;
 }
 
 .about-dogs-card .about-role,
@@ -1057,6 +1136,91 @@ input {
   opacity: 0.7;
   margin-top: 0.15rem;
   color: var(--paper);
+}
+
+.dog-treat {
+  margin-top: 1rem;
+  padding: 0 1.15rem 0.3rem;
+  text-align: center;
+  border-top: 1px dashed rgba(234, 240, 236, 0.15);
+  padding-top: 1rem;
+}
+
+.dog-treat-msg {
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: rgba(234, 240, 236, 0.65);
+  letter-spacing: -0.01em;
+}
+
+.dog-treat-btn-wrap {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  margin-top: 0.55rem;
+  min-height: 80px;
+  min-width: 80px;
+}
+
+.treat-bone-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 2;
+}
+
+.dog-treat-btn {
+  position: relative;
+  z-index: 1;
+  border: none;
+  background: rgba(234, 240, 236, 0.1);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition:
+    background 0.15s ease,
+    transform 0.12s ease;
+}
+
+.dog-treat-btn:hover {
+  background: rgba(234, 240, 236, 0.2);
+}
+
+.dog-treat-btn:active {
+  transform: scale(0.88);
+}
+
+.treat-bone {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 2rem;
+  line-height: 1;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.treat-bone--burst {
+  animation: bone-burst 1.15s var(--bd, 0s) ease-out forwards;
+}
+
+@keyframes bone-burst {
+  0% {
+    transform: translate(-50%, -50%) translate(0, 0) rotate(0deg) scale(0.65);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) translate(var(--tx), var(--ty))
+      rotate(var(--rot)) scale(var(--sc));
+    opacity: 0;
+  }
 }
 
 @media (max-width: 380px) {
@@ -1130,6 +1294,246 @@ input {
 }
 
 /* gallery */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.45rem;
+}
+
+.gallery-grid > * {
+  min-width: 0;
+}
+
+.gallery-thumb {
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 1;
+  background: var(--card);
+  box-shadow: 0 2px 8px rgba(22, 19, 15, 0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.gallery-thumb:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(22, 19, 15, 0.12);
+}
+
+.gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(10, 16, 15, 0.92);
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+}
+
+.gallery-lightbox-inner {
+  position: relative;
+  width: min(100%, 420px);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lb-close {
+  position: absolute;
+  top: -2.6rem;
+  right: 0;
+  border: none;
+  background: none;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.lb-nav {
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.lb-frame {
+  width: 100%;
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.lb-frame:active {
+  cursor: grabbing;
+}
+
+.lb-frame img {
+  display: block;
+  width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 12px;
+  user-select: none;
+}
+
+.lb-meta {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 0.6rem;
+}
+
+.lb-cap {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.lb-count {
+  margin: 0.35rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  opacity: 0.65;
+}
+
+/* dog interview */
+.dog-interview {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.interview-intro {
+  margin: 0 0 0.4rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.interview-intro b {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.interview-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.interview-q {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.65rem;
+}
+
+.interview-avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 20%;
+  flex-shrink: 0;
+  border: 2px solid var(--card);
+  box-shadow: 0 4px 14px rgba(22, 19, 15, 0.14);
+}
+
+.interview-item.pooh .interview-avatar {
+  border-color: rgba(90, 161, 74, 0.35);
+}
+
+.interview-item.pi .interview-avatar {
+  border-color: rgba(31, 138, 166, 0.35);
+}
+
+.interview-bubble {
+  border-radius: 16px;
+  padding: 0.85rem 1rem;
+  max-width: 100%;
+}
+
+.interview-bubble.q {
+  flex: 1;
+  background: var(--card);
+  border: 1px solid var(--line-soft);
+  border-bottom-left-radius: 4px;
+}
+
+.interview-item.pooh .interview-bubble.q {
+  border-left: 3px solid var(--grass);
+}
+
+.interview-item.pi .interview-bubble.q {
+  border-left: 3px solid var(--accent);
+}
+
+.interview-answers {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 4.5rem;
+}
+
+.interview-a {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.interview-bubble.a {
+  background: var(--ink);
+  color: var(--paper);
+  border-bottom-right-radius: 4px;
+  max-width: 92%;
+}
+
+.interview-a.groom .interview-bubble.a {
+  background: #2a2620;
+}
+
+.interview-a.bride .interview-bubble.a {
+  background: #3d2f35;
+}
+
+.interview-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin-bottom: 0.35rem;
+}
+
+.interview-bubble p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.interview-bubble.a .interview-label {
+  color: var(--accent-soft);
+  opacity: 0.9;
+}
+
 .carousel {
   position: relative;
   border-radius: 18px;

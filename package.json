@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "deploy": "npm run build && npx gh-pages -d dist",
+    "qr": "node scripts/generate-heart-qr.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -23,6 +25,8 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
+    "pngjs": "^7.0.0",
+    "qrcode": "^1.5.4",
     "vite": "^8.0.12"
   }
 }

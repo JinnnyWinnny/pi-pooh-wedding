@@ -1,8 +1,9 @@
-import { useState } from "react";
 import { weddingData } from "../data/weddingData";
 import ScrollReveal from "./ScrollReveal";
 import CountdownCalendar from "./CountdownCalendar";
 import AboutUs from "./AboutUs";
+import GalleryGrid from "./GalleryGrid";
+import DogInterview from "./DogInterview";
 
 function copyText(text) {
   navigator.clipboard?.writeText(text);
@@ -20,38 +21,37 @@ function ParentsLine({ father, mother, relation }) {
 }
 
 export default function InvitationContent() {
-  const [idx, setIdx] = useState(0);
-  const { couple, date, venue, message, gallery, accounts, dogs } = weddingData;
+  const { couple, date, venue, message, gallery, accounts, dogs, heroImage, interview } =
+    weddingData;
   const dateStr = `${date.year}. ${String(date.month).padStart(2, "0")}. ${String(date.day).padStart(2, "0")} (${date.weekday})`;
-
-  const prev = () => setIdx((i) => (i === 0 ? gallery.length - 1 : i - 1));
-  const next = () => setIdx((i) => (i === gallery.length - 1 ? 0 : i + 1));
 
   return (
     <main className="invitation">
-      <section className="sec inv-hero" id="start">
-        <ScrollReveal preset="fade">
-          <p className="kicker" style={{ color: "var(--accent)" }}>
-            🐾 Follow PI &amp; Pooh
-          </p>
-        </ScrollReveal>
+      <section
+        className="sec inv-hero"
+        id="start"
+        style={{ "--hero-bg": `url(${heroImage})` }}
+      >
+        <div className="hero-bg">
+          <div className="hero-content">
+            <ScrollReveal preset="scale" delay={0.08}>
+              <div className="names">
+                {couple.groom.name}
+                <span className="amp">and</span>
+                {couple.bride.name}
+              </div>
+            </ScrollReveal>
 
-        <ScrollReveal preset="scale" delay={0.08}>
-          <div className="names">
-            {couple.groom.name}
-            <span className="amp">and</span>
-            {couple.bride.name}
+            <ScrollReveal preset="up" delay={0.2}>
+              <p className="when">
+                {dateStr} · {date.time}
+              </p>
+              <p className="where">
+                {venue.name} {venue.hall}
+              </p>
+            </ScrollReveal>
           </div>
-        </ScrollReveal>
-
-        <ScrollReveal preset="up" delay={0.2}>
-          <p className="when">
-            {dateStr} · {date.time}
-          </p>
-          <p className="where">
-            {venue.name} {venue.hall}
-          </p>
-        </ScrollReveal>
+        </div>
       </section>
 
       <section className="sec">
@@ -69,6 +69,7 @@ export default function InvitationContent() {
         </ScrollReveal>
         <CountdownCalendar
           date={date}
+          venue={venue}
           groomShort={couple.groom.shortName}
           brideShort={couple.bride.shortName}
         />
@@ -115,44 +116,19 @@ export default function InvitationContent() {
         <ScrollReveal>
           <p className="sec-no">05 — Gallery</p>
         </ScrollReveal>
-        <ScrollReveal delay={0.1}>
-          <div className="carousel">
-            <div className="frame">
-              <img src={gallery[idx].src} alt={gallery[idx].caption} />
-              <div className="cap">
-                <span>{gallery[idx].caption}</span>
-                <span>
-                  {String(idx + 1).padStart(2, "0")} /{" "}
-                  {String(gallery.length).padStart(2, "0")}
-                </span>
-              </div>
-            </div>
-            <div className="car-nav">
-              <button type="button" onClick={prev} aria-label="이전 사진">
-                ‹
-              </button>
-              <button type="button" onClick={next} aria-label="다음 사진">
-                ›
-              </button>
-            </div>
-          </div>
-          <div className="car-dots">
-            {gallery.map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                className={i === idx ? "on" : ""}
-                onClick={() => setIdx(i)}
-                aria-label={`사진 ${i + 1}`}
-              />
-            ))}
-          </div>
-        </ScrollReveal>
+        <GalleryGrid items={gallery} />
       </section>
 
       <section className="sec">
         <ScrollReveal>
-          <p className="sec-no">06 — Location</p>
+          <p className="sec-no">06 — Pi &amp; Pooh Interview</p>
+        </ScrollReveal>
+        <DogInterview interview={interview} dogs={dogs} couple={couple} />
+      </section>
+
+      <section className="sec">
+        <ScrollReveal>
+          <p className="sec-no">07 — Location</p>
         </ScrollReveal>
         <ScrollReveal delay={0.1}>
           <div className="venue">
@@ -178,7 +154,7 @@ export default function InvitationContent() {
 
       <section className="sec">
         <ScrollReveal>
-          <p className="sec-no">07 — With Heart</p>
+          <p className="sec-no">08 — With Heart</p>
         </ScrollReveal>
         {accounts.map((acc, i) => (
           <ScrollReveal key={acc.label} delay={0.08 * i}>
