@@ -1,21 +1,21 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import DepartureScene from './components/DepartureScene';
-import FlightScene from './components/FlightScene';
+import PawWalkScene from './components/PawWalkScene';
 import ArrivalScene from './components/ArrivalScene';
 import InvitationContent from './components/InvitationContent';
 import PawTrail from './components/PawTrail';
 import './App.css';
 
 const PHASES = {
-  DEPARTURE: 'departure',
-  FLIGHT: 'flight',
+  INTRO: 'intro',
+  WALK: 'walk',
   ARRIVAL: 'arrival',
   INVITATION: 'invitation',
 };
 
 export default function App() {
-  const [phase, setPhase] = useState(PHASES.DEPARTURE);
+  const [phase, setPhase] = useState(PHASES.INTRO);
 
   const goToInvitation = () => {
     setPhase(PHASES.INVITATION);
@@ -27,15 +27,15 @@ export default function App() {
   return (
     <div className="app">
       <AnimatePresence mode="wait">
-        {phase === PHASES.DEPARTURE && (
-          <motion.div key="departure" exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
-            <DepartureScene onDepart={() => setPhase(PHASES.FLIGHT)} />
+        {phase === PHASES.INTRO && (
+          <motion.div key="intro" exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
+            <DepartureScene onDepart={() => setPhase(PHASES.WALK)} />
           </motion.div>
         )}
 
-        {phase === PHASES.FLIGHT && (
-          <motion.div key="flight" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <FlightScene onArrive={() => setPhase(PHASES.ARRIVAL)} />
+        {phase === PHASES.WALK && (
+          <motion.div key="walk" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <PawWalkScene onArrive={() => setPhase(PHASES.ARRIVAL)} />
           </motion.div>
         )}
 

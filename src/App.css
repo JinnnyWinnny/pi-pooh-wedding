@@ -79,7 +79,188 @@ input {
   text-transform: uppercase;
 }
 
-/* ───────── DEPARTURE / BOARDING PASS ───────── */
+/* ───────── INTRO (Pi & Pooh) ───────── */
+.intro {
+  background:
+    radial-gradient(
+      120% 80% at 50% -10%,
+      rgba(31, 138, 166, 0.15),
+      transparent 55%
+    ),
+    radial-gradient(
+      100% 70% at 50% 115%,
+      rgba(90, 161, 74, 0.18),
+      transparent 55%
+    ),
+    var(--paper);
+  gap: 1.4rem;
+  padding-bottom: 2rem;
+}
+
+.intro-dogs {
+  width: min(100%, 360px);
+  text-align: center;
+}
+
+.intro-family {
+  width: min(100%, 300px);
+  /* border-radius: 18px; */
+  /* box-shadow: 0 16px 40px -16px rgba(22, 19, 15, 0.28); */
+}
+
+.speech-list {
+  width: min(100%, 360px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.speech-bubble {
+  background: var(--card);
+  border: 1px solid var(--line-soft);
+  border-radius: 16px;
+  padding: 0.85rem 1rem;
+  text-align: left;
+  box-shadow: 0 4px 14px rgba(22, 19, 15, 0.06);
+}
+
+.speech-bubble.pi {
+  border-left: 3px solid var(--accent);
+  margin-right: 1.5rem;
+}
+
+.speech-bubble.pooh {
+  border-left: 3px solid var(--grass);
+  margin-left: 1.5rem;
+}
+
+.speech-from {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.speech-bubble p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.intro-btn {
+  width: min(100%, 360px);
+  border: none;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 14px;
+  padding: 1.15rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition:
+    transform 0.15s ease,
+    background 0.2s ease;
+}
+
+.intro-btn:hover {
+  background: var(--accent);
+}
+
+.intro-btn b {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.intro-btn .tag {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  opacity: 0.75;
+}
+
+/* ───────── PAW WALK ───────── */
+.paw-walk {
+  background:
+    radial-gradient(
+      100% 80% at 50% 0%,
+      rgba(90, 161, 74, 0.2),
+      transparent 60%
+    ),
+    var(--paper);
+  gap: 1.6rem;
+}
+
+.walk-kicker {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+}
+
+.walk-path {
+  position: relative;
+  width: min(100%, 360px);
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+}
+
+.walk-paw {
+  font-size: 1.1rem;
+  opacity: 0.55;
+  transform: rotate(-18deg);
+}
+
+.walk-paw:nth-child(even) {
+  transform: rotate(12deg) translateY(8px);
+}
+
+.walk-leaders {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 0.35rem;
+}
+
+.walk-leaders img {
+  width: 144px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.18));
+}
+
+.walk-msg-wrap {
+  min-height: 2.5rem;
+  width: min(100%, 360px);
+}
+
+.walk-msg {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--ink);
+  text-align: center;
+}
+
+.walk-progress {
+  width: min(100%, 360px);
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  transform-origin: left;
+}
+
+/* ───────── DEPARTURE / BOARDING PASS (legacy) ───────── */
 .departure {
   background:
     radial-gradient(
@@ -255,8 +436,15 @@ input {
   font-style: italic;
   font-weight: 500;
 }
+.dep-four-photo {
+  display: block;
+  width: min(100%, 300px);
+  margin: 1.1rem auto 0;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px -12px rgba(22, 19, 15, 0.28);
+}
 .dep-headline p {
-  margin: 0.9rem 0 0;
+  margin: 1rem 0 0;
   color: var(--ink-soft);
   font-size: 0.92rem;
 }
@@ -400,9 +588,64 @@ input {
       transparent 55%
     ),
     var(--paper);
-  gap: 1.5rem;
+  gap: 1.2rem;
   text-align: center;
 }
+
+.arrival-badge {
+  border: 2px solid var(--grass);
+  color: var(--grass-deep);
+  border-radius: 999px;
+  padding: 0.55rem 1.3rem;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+}
+
+.arrival h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(1.8rem, 8vw, 2.6rem);
+  line-height: 1.25;
+}
+
+.arrival-heart {
+  color: var(--grass);
+  margin: 0 0.25em;
+  font-style: normal;
+}
+
+.arrival-card {
+  background: var(--card);
+  border: 1px solid var(--line-soft);
+  border-radius: 16px;
+  padding: 1.2rem 1.4rem;
+  width: min(100%, 340px);
+}
+
+.arrival-date {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+}
+
+.arrival-time {
+  margin: 0.4rem 0 0;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+}
+
+.arrival-place {
+  margin: 0.5rem 0 0;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
 .stamp {
   border: 3px solid var(--accent);
   color: var(--accent);
@@ -422,16 +665,6 @@ input {
   letter-spacing: 0.12em;
   opacity: 0.8;
   margin-top: 0.2rem;
-}
-.arrival h2 {
-  margin: 0;
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(2.2rem, 9vw, 3.2rem);
-}
-.arrival h2 em {
-  font-style: italic;
-  font-weight: 500;
 }
 .arrival .sub {
   margin: 0;
@@ -764,6 +997,68 @@ input {
   color: var(--ink-soft);
 }
 
+.about-dogs-card {
+  background: var(--ink);
+  color: var(--paper);
+  padding-bottom: 1.2rem;
+}
+
+.about-dogs-card .about-role,
+.about-dogs-card .about-name,
+.about-dogs-card .about-bio {
+  color: var(--paper);
+}
+
+.about-dogs-card .about-role {
+  color: var(--accent-soft);
+}
+
+.about-dogs-card .about-bio {
+  opacity: 0.75;
+}
+
+.about-dogs-head {
+  padding-bottom: 0.6rem;
+}
+
+.about-dogs-card .dog-avatars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  padding: 0 1.15rem;
+}
+
+.about-dogs-card .dog-avatar {
+  margin: 0;
+  text-align: center;
+}
+
+.about-dogs-card .dog-avatar img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid rgba(243, 239, 230, 0.18);
+}
+
+.about-dogs-card .dog-avatar figcaption {
+  margin-top: 0.55rem;
+}
+
+.about-dogs-card .dog-avatar b {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--paper);
+}
+
+.about-dogs-card .dog-avatar span {
+  display: block;
+  font-size: 0.7rem;
+  opacity: 0.7;
+  margin-top: 0.15rem;
+  color: var(--paper);
+}
+
 @media (max-width: 380px) {
   .sec-about {
     padding-left: 1.5rem;
@@ -832,60 +1127,6 @@ input {
 .bento .parents-relation {
   font-size: 0.82rem;
   color: gray;
-}
-.dog-card {
-  grid-column: 1 / -1;
-  background: var(--ink);
-  color: var(--paper);
-  border-radius: 16px;
-  padding: 1.2rem 1.3rem 1.4rem;
-}
-.dog-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.1rem;
-}
-.dog-tag {
-  font-family: var(--mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-.dog-breed {
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.14em;
-  opacity: 0.6;
-}
-.dog-avatars {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-.dog-avatar {
-  margin: 0;
-  text-align: center;
-}
-.dog-avatar img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 14px;
-  border: 2px solid rgba(243, 239, 230, 0.18);
-}
-.dog-avatar figcaption {
-  margin-top: 0.6rem;
-}
-.dog-avatar b {
-  font-family: var(--serif);
-  font-size: 1.15rem;
-}
-.dog-avatar span {
-  display: block;
-  font-size: 0.72rem;
-  opacity: 0.7;
-  margin-top: 0.15rem;
 }
 
 /* gallery */

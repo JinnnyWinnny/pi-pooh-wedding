@@ -1,6 +1,6 @@
 import ScrollReveal from "./ScrollReveal";
 
-export default function AboutUs({ groom, bride }) {
+export default function AboutUs({ groom, bride, dogs }) {
   const people = [
     { role: "Groom", person: groom, preset: "left" },
     { role: "Bride", person: bride, preset: "right" },
@@ -22,6 +22,29 @@ export default function AboutUs({ groom, bride }) {
           </article>
         </ScrollReveal>
       ))}
+
+      <ScrollReveal preset="up" delay={0.24}>
+        <article className="about-card about-dogs-card">
+          <div className="about-body about-dogs-head">
+            <p className="about-role">🐾 Our Guide Dogs</p>
+            <h3 className="about-name">{dogs.namesKo}</h3>
+            <p className="about-bio">{dogs.breed} · {dogs.tagline}</p>
+          </div>
+          <div className="dog-avatars">
+            {dogs.profiles.map((d) => (
+              <figure key={d.name} className="dog-avatar">
+                <img src={d.src} alt={`${d.name} (${d.nameKo})`} />
+                <figcaption>
+                  <b>{d.name}</b>
+                  <span>
+                    {d.nameKo} · {d.desc}
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </article>
+      </ScrollReveal>
     </div>
   );
 }

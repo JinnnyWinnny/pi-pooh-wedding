@@ -101,27 +101,6 @@ export default function InvitationContent() {
               />
             </ScrollReveal>
           </div>
-          <div className="dog-card">
-            <ScrollReveal delay={0.12}>
-              <div className="dog-head">
-                <span className="dog-tag">🐾 Our Guide Dogs</span>
-                <span className="dog-breed">{dogs.breed}</span>
-              </div>
-              <div className="dog-avatars">
-                {dogs.profiles.map((d) => (
-                  <figure key={d.name} className="dog-avatar">
-                    <img src={d.src} alt={`${d.name} (${d.nameKo})`} />
-                    <figcaption>
-                      <b>{d.name}</b>
-                      <span>
-                        {d.nameKo} · {d.desc}
-                      </span>
-                    </figcaption>
-                  </figure>
-                ))}
-              </div>
-            </ScrollReveal>
-          </div>
         </div>
       </section>
 
@@ -129,7 +108,7 @@ export default function InvitationContent() {
         <ScrollReveal>
           <p className="sec-no">04 — About Us</p>
         </ScrollReveal>
-        <AboutUs groom={couple.groom} bride={couple.bride} />
+        <AboutUs groom={couple.groom} bride={couple.bride} dogs={dogs} />
       </section>
 
       <section className="sec">
