@@ -990,8 +990,8 @@ input {
 
 /* about us */
 .sec-about {
-  padding-left: 2rem;
-  padding-right: 2rem;
+  /* padding-left: 0.5rem;
+  padding-right: 0.5rem; */
 }
 
 .about-grid {
