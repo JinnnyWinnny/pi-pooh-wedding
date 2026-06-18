@@ -5,6 +5,8 @@ import CountdownCalendar from "./CountdownCalendar";
 import AboutUs from "./AboutUs";
 import GalleryGrid from "./GalleryGrid";
 import DogInterview from "./DogInterview";
+import MemoriesTimeline from "./MemoriesTimeline";
+import AccountSection from "./AccountSection";
 
 function copyText(text) {
   navigator.clipboard?.writeText(text);
@@ -22,7 +24,7 @@ function ParentsLine({ father, mother, relation }) {
 }
 
 export default function InvitationContent() {
-  const { couple, date, venue, message, gallery, accounts, dogs, heroImage, interview } =
+  const { couple, date, venue, message, gallery, accounts, dogs, heroImage, interview, memories } =
     weddingData;
   const dateStr = `${date.year}. ${String(date.month).padStart(2, "0")}. ${String(date.day).padStart(2, "0")} (${date.weekday})`;
 
@@ -113,23 +115,30 @@ export default function InvitationContent() {
         <AboutUs groom={couple.groom} bride={couple.bride} dogs={dogs} />
       </section>
 
+      <section className="sec sec-memories">
+        <ScrollReveal>
+          <p className="sec-no">05 — Our Moments</p>
+        </ScrollReveal>
+        <MemoriesTimeline memories={memories} />
+      </section>
+
       <section className="sec">
         <ScrollReveal>
-          <p className="sec-no">05 — Gallery</p>
+          <p className="sec-no">06 — Gallery</p>
         </ScrollReveal>
         <GalleryGrid items={gallery} />
       </section>
 
       <section className="sec">
         <ScrollReveal>
-          <p className="sec-no">06 — Pi &amp; Pooh Interview</p>
+          <p className="sec-no">07 — Pi &amp; Pooh Interview</p>
         </ScrollReveal>
         <DogInterview interview={interview} dogs={dogs} couple={couple} />
       </section>
 
       <section className="sec">
         <ScrollReveal>
-          <p className="sec-no">07 — Location</p>
+          <p className="sec-no">08 — Location</p>
         </ScrollReveal>
         <ScrollReveal delay={0.1}>
           <div className="venue">
@@ -155,24 +164,9 @@ export default function InvitationContent() {
 
       <section className="sec">
         <ScrollReveal>
-          <p className="sec-no">08 — With Heart</p>
+          <p className="sec-no">09 — With Heart</p>
         </ScrollReveal>
-        {accounts.map((acc, i) => (
-          <ScrollReveal key={acc.label} delay={0.08 * i}>
-            <div className="acct">
-              <div>
-                <p className="lab">
-                  {acc.label} · {acc.bank}
-                </p>
-                <p className="num">{acc.number}</p>
-                <p className="hd">{acc.holder}</p>
-              </div>
-              <button type="button" onClick={() => copyText(acc.number)}>
-                복사
-              </button>
-            </div>
-          </ScrollReveal>
-        ))}
+        <AccountSection accounts={accounts} onCopy={copyText} />
       </section>
 
       <section className="sec closing">

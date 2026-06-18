@@ -2,6 +2,7 @@
 import { assetUrl } from "../utils/assetUrl";
 
 const us = (file) => assetUrl(`us/${file}`);
+const mem = (file) => assetUrl(`mem/${file}`);
 
 export const weddingData = {
   heroImage: us("IMG_2877.jpg"),
@@ -77,20 +78,41 @@ export const weddingData = {
     { src: us("IMG_2918.jpg") },
     { src: us("IMG_3177.jpg") },
   ],
-  accounts: [
-    {
-      label: "신랑",
-      bank: "국민은행",
-      number: "123-456-789012",
-      holder: "박석준",
+  accounts: {
+    title: "마음 전하실곳",
+    message:
+      "참석이 어려우신 분들을 위해 계좌번호를 기재하였습니다. 너그러운 마음으로 양해 부탁드립니다.",
+    groom: {
+      label: "신랑측",
+      items: [
+        {
+          bank: "국민은행",
+          number: "123-456-789012",
+          holder: "박석준",
+        },
+        {
+          bank: "국민은행",
+          number: "123-456-789013",
+          holder: "박종철",
+        },
+      ],
     },
-    {
-      label: "신부",
-      bank: "신한은행",
-      number: "110-123-456789",
-      holder: "이지은",
+    bride: {
+      label: "신부측",
+      items: [
+        {
+          bank: "신한은행",
+          number: "110-123-456789",
+          holder: "이지은",
+        },
+        {
+          bank: "신한은행",
+          number: "110-123-456790",
+          holder: "이상록",
+        },
+      ],
     },
-  ],
+  },
   dogs: {
     names: "Pi & Pooh",
     namesKo: "파이 & 푸",
@@ -108,6 +130,92 @@ export const weddingData = {
         nameKo: "푸",
         src: assetUrl("dogs/pooh_main.jpg"),
         desc: "동생 담당",
+      },
+    ],
+  },
+  memories: {
+    title: "만남에서 사랑으로",
+    subtitle: "우리를 만든 순간들",
+    coverImage: us("IMG_2876.jpg"),
+    moments: [
+      {
+        year: 2021,
+        title: "처음 데이트 장소",
+        body: "같이 한 첫번째 식사",
+        image: mem("firstdate.jpg"),
+      },
+      {
+        year: 2022,
+        title: "대학교",
+        lines: ["같이 학교에서 보낸 30번의 밤"],
+        images: [
+          mem("school3.jpg"),
+          mem("school2.jpg"),
+
+          mem("library.jpg"),
+          mem("school.jpg"),
+        ],
+      },
+      {
+        year: 2022,
+        title: "새 가족",
+        lines: ["가족이 둘에서 셋으로. 파이야 환영해!"],
+        images: [
+          mem("pi4.jpg"),
+          mem("pi2.jpg"),
+          mem("pi1.jpg"),
+          mem("pi3.jpg"),
+        ],
+      },
+
+      {
+        year: 2022,
+        title: "대학 졸업",
+        lines: ["석준이의 서포트로 무사히 지은이 졸업"],
+        image: mem("graduation.jpg"),
+      },
+      {
+        year: 2022,
+        title: "크리스마스",
+        lines: ["같이 보낸 4번의 크리스마스"],
+        image: mem("christmas.jpg"),
+      },
+      {
+        year: 2023,
+        title: "새 차",
+        lines: ["공동명의 첫번째 새 차"],
+        image: mem("new car.jpg"),
+      },
+
+      {
+        year: 2023,
+        title: "여행",
+        lines: ["같이 간 150번의 여행"],
+        images: [mem("trip1.jpg"), mem("trip2.jpg"), mem("trip3.jpg")],
+      },
+      {
+        year: 2023,
+        title: "새가족",
+        lines: ["가족이 셋에서 넷으로. 푸야 환영해!"],
+        images: [mem("pooh1.jpg"), mem("pooh2.jpg"), mem("pooh3.jpg")],
+      },
+      {
+        year: 2023,
+        title: "네가족",
+        lines: ["우리가족"],
+        // cover: mem("main.jpg"),
+        images: [
+          mem("four2.jpg"),
+          mem("four1.jpg"),
+          mem("four3.jpg"),
+          mem("main.jpg"),
+        ],
+      },
+      {
+        year: 2024,
+        title: "혼인신고",
+        lines: ["July, 13th 2024"],
+        image: mem("mrg.jpg"),
       },
     ],
   },
