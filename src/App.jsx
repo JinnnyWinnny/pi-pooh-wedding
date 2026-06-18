@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import DepartureScene from './components/DepartureScene';
 import PawWalkScene from './components/PawWalkScene';
-import ArrivalScene from './components/ArrivalScene';
 import InvitationContent from './components/InvitationContent';
 import PawTrail from './components/PawTrail';
 import './App.css';
@@ -10,7 +9,6 @@ import './App.css';
 const PHASES = {
   INTRO: 'intro',
   WALK: 'walk',
-  ARRIVAL: 'arrival',
   INVITATION: 'invitation',
 };
 
@@ -35,13 +33,7 @@ export default function App() {
 
         {phase === PHASES.WALK && (
           <motion.div key="walk" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <PawWalkScene onArrive={() => setPhase(PHASES.ARRIVAL)} />
-          </motion.div>
-        )}
-
-        {phase === PHASES.ARRIVAL && (
-          <motion.div key="arrival" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <ArrivalScene onContinue={goToInvitation} />
+            <PawWalkScene onArrive={goToInvitation} />
           </motion.div>
         )}
       </AnimatePresence>

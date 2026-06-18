@@ -8,7 +8,16 @@ const STEPS = [
   "조금만 더 가면 청첩장이에요!",
 ];
 
-const PAWS = Array.from({ length: 8 }, (_, i) => i);
+const PAW_PATH = [
+  { left: "4%", top: "72%", rotate: -28 },
+  { left: "14%", top: "48%", rotate: 16 },
+  { left: "26%", top: "66%", rotate: -22 },
+  { left: "38%", top: "38%", rotate: 20 },
+  { left: "50%", top: "58%", rotate: -18 },
+  { left: "62%", top: "34%", rotate: 24 },
+  { left: "74%", top: "52%", rotate: -14 },
+  { left: "86%", top: "28%", rotate: 18 },
+];
 
 export default function PawWalkScene({ onArrive }) {
   const [step, setStep] = useState(0);
@@ -35,12 +44,13 @@ export default function PawWalkScene({ onArrive }) {
       </motion.p>
 
       <div className="walk-path">
-        {PAWS.map((i) => (
+        {PAW_PATH.map((paw, i) => (
           <motion.span
             key={i}
             className="walk-paw"
-            initial={{ opacity: 0, scale: 0.4 }}
-            animate={{ opacity: 1, scale: 1 }}
+            style={{ left: paw.left, top: paw.top }}
+            initial={{ opacity: 0, scale: 0.4, rotate: paw.rotate }}
+            animate={{ opacity: 1, scale: 1, rotate: paw.rotate }}
             transition={{ delay: 0.2 + i * 0.35, duration: 0.35 }}
           >
             🐾
@@ -49,8 +59,11 @@ export default function PawWalkScene({ onArrive }) {
 
         <motion.div
           className="walk-leaders"
-          initial={{ left: "4%" }}
-          animate={{ left: "78%" }}
+          initial={{ left: "2%", top: "72%" }}
+          animate={{
+            left: ["2%", "38%", "86%"],
+            top: ["72%", "38%", "28%"],
+          }}
           transition={{ duration: 3.8, ease: "easeInOut" }}
         >
           <img src={assetUrl("dogs/pp.png")} alt="파이와 푸" />
