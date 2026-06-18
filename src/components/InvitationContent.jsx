@@ -1,4 +1,5 @@
 import { weddingData } from "../data/weddingData";
+import { assetUrl } from "../utils/assetUrl";
 import ScrollReveal from "./ScrollReveal";
 import CountdownCalendar from "./CountdownCalendar";
 import AboutUs from "./AboutUs";
@@ -177,6 +178,13 @@ export default function InvitationContent() {
       <section className="sec closing">
         <ScrollReveal preset="scale">
           <div className="paws">🐾 🐾 🐾</div>
+        </ScrollReveal>
+        <ScrollReveal delay={0.08}>
+          <img
+            src={assetUrl("dogs/fourofus.png")}
+            alt="파이, 푸, 신랑, 신부"
+            className="closing-photo"
+          />
         </ScrollReveal>
         <ScrollReveal delay={0.1}>
           <p>

@@ -1743,7 +1743,14 @@ input {
 .closing .paws {
   letter-spacing: 0.4rem;
   opacity: 0.5;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+}
+.closing-photo {
+  width: min(100%, 340px);
+  height: auto;
+  margin: 0 auto 1.25rem;
+  display: block;
+  object-fit: contain;
 }
 .closing h3 {
   margin: 0;
