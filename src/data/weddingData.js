@@ -17,8 +17,7 @@ export const weddingData = {
       photo:
         "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80",
       bio: "1997년 02월 15일",
-      subbio:
-        "샌디에고에서 새로운 꿈을 키우며, 늘 한결같은 마음으로 사랑을 지켜온 사람입니다.",
+      subbio: "언제나 긍정적인 에너지로 우리 가족을 웃게 만드는 사람",
       tags: ["ENFP", "인간 골댕이"],
     },
     bride: {
@@ -31,7 +30,7 @@ export const weddingData = {
       photo: mem("babyJenny.jpg"),
       bio: "1997년 02월 19일",
       subbio: "호기심을 잃지 않고 꾸준히 배우며 성장하는 사람",
-      tags: ["ISTJ", "테니스"],
+      tags: ["ESTJ", "테니스 여제"],
     },
   },
   date: {
@@ -222,22 +221,21 @@ export const weddingData = {
     {
       interviewer: "Pi",
       question: "형, 누나 처음 만났을 때 제일 기억나는 게 뭐야?",
-      groomAnswer: "샌디에고에서 처음 만났는데, 웃는 모습이 아직도 선명해요.",
+      groomAnswer: "세련되고 예쁜 똑부러지는 꼬북이 (반함)",
       brideAnswer: "안경에 학교 후드티,, 너드중의 너드 (이상형)",
     },
     {
       interviewer: "Pooh",
       question: "결혼을 결심하게 된 계기가 뭐야?",
       groomAnswer:
-        "함께 있는 일상이 너무 자연스럽고, 이 사람과 앞으로도 같이 가고 싶다는 확신이 들었어요.",
+        "혼자 야무지게 궂은 일을 해내는 모습을 보면서, 대신 궂은 일을 다 해주고 싶다는 생각이 들었어",
       brideAnswer:
         "배려가 몸에 밴 사람이라 궂은 일도 먼저 맡아 하고, 니일 내일 가릴 것 없이 생색도 내지 않고 바라는 것도 없는 모습",
     },
     {
       interviewer: "Pi",
       question: "서로한테 고마운 점 한 가지만 말해줘!",
-      groomAnswer:
-        "항상 제 이야기를 끝까지 들어주고, 작은 것도 기억해 준다는 거요.",
+      groomAnswer: "EVERYTHING, 못나고 부족해도 나를 믿어주는 마음",
       brideAnswer:
         "EVERYTHING, 긍정적으로 뭐든 잘 될거고 할수 있다고 말해주는 마음",
     },
@@ -245,19 +243,20 @@ export const weddingData = {
       interviewer: "Pooh",
       question: "둘이서 가장 좋아하는 시간은 언제야?",
       groomAnswer:
-        "저녁에 같이 산책할 때요. 말 없이 걸어도 편한 게 제일 좋아요.",
+        "파이 푸가 행복하게 뛰는 모습을 보면서 같이 공원에서 산책하고 공놀이 할 때",
       brideAnswer: "파이 푸랑 가는 Dog Beach & Road Trip! ",
     },
     {
       interviewer: "Pi",
       question: "결혼하고 나면 뭐가 제일 기대돼?",
-      groomAnswer: "매일 아침 같이 커피 마시고, 가족으로서의 일상을 쌓는 거요.",
+      groomAnswer: "특별한 날을 기다리지 않아도 같이 보내는 매일매일",
       brideAnswer: "롱디 끝내고 다같이 미국에서 시작하는 일상",
     },
     {
       interviewer: "Pooh",
       question: "마지막으로 하객분들께 한마디!",
-      groomAnswer: "바쁘신데도 와 주셔서 정말 감사합니다.",
+      groomAnswer:
+        "소중한 시간 저희에게 할애해주셔서 감사합니다. 감사하고 베풀며 언제나 겸손한 부부가 되겠습니다 :)",
       brideAnswer:
         "귀중한 시간 내어 와주셔서 감사합니다. 늘 겸손힌 마음으로 베풀고 도우며 사는 부부가 되겠습니다 :)",
     },
