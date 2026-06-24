@@ -159,6 +159,21 @@ export default function InvitationContent() {
               네이버지도
             </a>
           </div>
+
+          {venue.parking?.length > 0 && (
+            <div className="parking">
+              <p className="parking-title">주차 안내</p>
+              <ul className="parking-list">
+                {venue.parking.map((lot, i) => (
+                  <li key={lot.label} className="parking-item">
+                    <p className="parking-label">{lot.label}</p>
+                    <p className="parking-name">{lot.name}</p>
+                    <p className="parking-address">{lot.address}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </ScrollReveal>
       </section>
 

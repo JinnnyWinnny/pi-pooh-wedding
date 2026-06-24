@@ -27,10 +27,10 @@ export const weddingData = {
       father: "이상록",
       mother: "명주현",
       relation: "딸",
-      photo: mem("babyJenny.jpg"),
+      photo: mem("jenny_baby.jpg"),
       bio: "1997년 02월 19일",
-      subbio: "호기심을 잃지 않고 꾸준히 배우며 성장하는 사람",
-      tags: ["ESTJ", "테니스 여제"],
+      subbio: "",
+      tags: ["ISTJ", "테니스"],
     },
   },
   date: {
@@ -50,6 +50,28 @@ export const weddingData = {
     tel: "02-1234-5678",
     mapUrl: "https://map.kakao.com",
     naverMapUrl: "https://map.naver.com",
+    parking: [
+      {
+        label: "제 1주차장",
+        name: "본 건물 지하주차장",
+        address: "안양시 동안구 시민대로 311",
+      },
+      {
+        label: "제 2주차장",
+        name: "지아이에스 (구 네온테크) 지하주차장",
+        address: "안양시 동안구 부림로 146",
+      },
+      {
+        label: "제 3주차장",
+        name: "이마트 평촌점",
+        address: "안양시 동안구 시민대로 300",
+      },
+      {
+        label: "제 4주차장",
+        name: "평촌칼라힐 주차빌딩 (2층이상)",
+        address: "안양시 동안구 시민대로 312",
+      },
+    ],
   },
   message: `함께하는 시간 속에서
 서로에게 배우고,
@@ -144,13 +166,13 @@ export const weddingData = {
       },
       {
         year: 2022,
-        title: "대학교",
-        lines: ["같이 학교에서 보낸 30번의 밤"],
+        title: "UCSD",
+        lines: ["같이 학교에서 보낸 300일"],
         images: [
-          mem("school3.jpg"),
+          mem("library.jpg"),
           mem("school2.jpg"),
 
-          mem("library.jpg"),
+          mem("school3.jpg"),
           mem("school.jpg"),
         ],
       },
@@ -230,7 +252,7 @@ export const weddingData = {
       groomAnswer:
         "혼자 야무지게 궂은 일을 해내는 모습을 보면서, 대신 궂은 일을 다 해주고 싶다는 생각이 들었어",
       brideAnswer:
-        "배려가 몸에 밴 사람이라 궂은 일도 먼저 맡아 하고, 니일 내일 가릴 것 없이 생색도 내지 않고 바라는 것도 없는 모습",
+        "아침잠이 많고 잠귀가 밝은 나를 위해서 화장실도 다른 화장실을 쓰고 살금살금 문도 조용히 닫는 모습에 결혼을 결심했어",
     },
     {
       interviewer: "Pi",

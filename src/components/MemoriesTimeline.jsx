@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useId, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 
@@ -164,17 +165,20 @@ function MemoryMomentCard({ moment, showYear }) {
         </div>
       </article>
 
-      <AnimatePresence>
-        {lightbox !== null && (
-          <MomentLightbox
-            photos={photos}
-            title={moment.title}
-            index={lightbox}
-            onClose={() => setLightbox(null)}
-            onChange={setLightbox}
-          />
-        )}
-      </AnimatePresence>
+      {createPortal(
+        <AnimatePresence>
+          {lightbox !== null && (
+            <MomentLightbox
+              photos={photos}
+              title={moment.title}
+              index={lightbox}
+              onClose={() => setLightbox(null)}
+              onChange={setLightbox}
+            />
+          )}
+        </AnimatePresence>,
+        document.body,
+      )}
     </li>
   );
 }

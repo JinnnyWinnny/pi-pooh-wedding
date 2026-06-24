@@ -1,32 +1,42 @@
 import { motion } from "framer-motion";
 import { weddingData } from "../data/weddingData";
 import { assetUrl } from "../utils/assetUrl";
-
-function SpeechBubble({ from, text, delay }) {
-  return (
-    <motion.div
-      className={`speech-bubble${from === "파이" ? " pi" : " pooh"}`}
-      initial={{ opacity: 0, y: 16, scale: 0.96 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ delay, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-    >
-      <span className="speech-from">{from}</span>
-      <p>{text}</p>
-    </motion.div>
-  );
-}
+import { IMessageChat, IMessageBubble } from "./IMessageChat";
 
 export default function DepartureScene({ onDepart }) {
-  const { couple } = weddingData;
+  const { couple, dogs } = weddingData;
+  const piSrc = dogs.profiles.find((d) => d.name === "Pi")?.src;
+  const poohSrc = dogs.profiles.find((d) => d.name === "Pooh")?.src;
 
   const speeches = [
-    { from: "파이", text: "잠깐만요! 여기 좀 보세요!" },
+    {
+      from: "파이",
+      side: "left",
+      variant: "pi",
+      text: "잠깐만요! 여기 좀 보세요!",
+      avatar: piSrc,
+    },
     {
       from: "푸",
+      side: "right",
+      variant: "pooh",
       text: `형 ${couple.groom.shortName}, 누나 ${couple.bride.shortName}이 드디어 결혼한대요!`,
+      avatar: poohSrc,
     },
-    { from: "파이", text: "우리가 안내해 드릴게요." },
-    { from: "푸", text: "저희 따라오세요 🐾" },
+    {
+      from: "파이",
+      side: "left",
+      variant: "pi",
+      text: "우리가 안내해 드릴게요.",
+      avatar: piSrc,
+    },
+    {
+      from: "푸",
+      side: "right",
+      variant: "pooh",
+      text: "저희 따라오세요 🐾",
+      avatar: poohSrc,
+    },
   ];
 
   return (
@@ -47,16 +57,25 @@ export default function DepartureScene({ onDepart }) {
         />
       </motion.div>
 
-      <div className="speech-list">
+      <IMessageChat
+        title="파이 · 푸"
+        subtitle="보더콜리 · 청첩장 안내견"
+        avatars={[piSrc, poohSrc].filter(Boolean)}
+        className="intro-imessage"
+      >
         {speeches.map((s, i) => (
-          <SpeechBubble
+          <IMessageBubble
             key={i}
-            from={s.from}
+            side={s.side}
+            variant={s.variant}
+            avatar={s.avatar}
+            avatarAlt={s.from}
+            label={s.from}
             text={s.text}
             delay={0.35 + i * 0.45}
           />
         ))}
-      </div>
+      </IMessageChat>
 
       <motion.button
         className="intro-btn"
