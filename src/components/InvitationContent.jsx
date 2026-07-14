@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { weddingData } from "../data/weddingData";
 import { assetUrl } from "../utils/assetUrl";
 import ScrollReveal from "./ScrollReveal";
@@ -5,7 +6,6 @@ import CountdownCalendar from "./CountdownCalendar";
 import AboutUs from "./AboutUs";
 import GalleryGrid from "./GalleryGrid";
 import DogInterview from "./DogInterview";
-import MemoriesTimeline from "./MemoriesTimeline";
 import AccountSection from "./AccountSection";
 
 function copyText(text) {
@@ -24,16 +24,25 @@ function ParentsLine({ father, mother, relation }) {
 }
 
 export default function InvitationContent() {
-  const { couple, date, venue, message, gallery, accounts, dogs, heroImage, interview, memories } =
+  const { couple, date, venue, message, gallery, accounts, dogs, heroImage, interview, aboutUs } =
     weddingData;
   const dateStr = `${date.year}. ${String(date.month).padStart(2, "0")}. ${String(date.day).padStart(2, "0")} (${date.weekday})`;
+  const [heroHeight, setHeroHeight] = useState(null);
+
+  useEffect(() => {
+    // Lock once so mobile URL-bar show/hide doesn't resize the hero
+    setHeroHeight(`${window.innerHeight}px`);
+  }, []);
 
   return (
     <main className="invitation">
       <section
         className="sec inv-hero"
         id="start"
-        style={{ "--hero-bg": `url(${heroImage})` }}
+        style={{
+          "--hero-bg": `url(${heroImage})`,
+          ...(heroHeight ? { "--hero-height": heroHeight } : {}),
+        }}
       >
         <div className="hero-bg">
           <div className="hero-content">
@@ -112,45 +121,47 @@ export default function InvitationContent() {
         <ScrollReveal>
           <p className="sec-no">04 — About Us</p>
         </ScrollReveal>
-        <AboutUs groom={couple.groom} bride={couple.bride} dogs={dogs} />
-      </section>
-
-      <section className="sec sec-memories">
-        <ScrollReveal>
-          <p className="sec-no">05 — Our Moments</p>
-        </ScrollReveal>
-        <MemoriesTimeline memories={memories} />
+        <AboutUs groom={couple.groom} bride={couple.bride} dogs={dogs} aboutUs={aboutUs} />
       </section>
 
       <section className="sec">
         <ScrollReveal>
-          <p className="sec-no">06 — Gallery</p>
+          <p className="sec-no">05 — Gallery</p>
         </ScrollReveal>
         <GalleryGrid items={gallery} />
       </section>
 
       <section className="sec">
         <ScrollReveal>
-          <p className="sec-no">07 — Pi &amp; Pooh Interview</p>
+          <p className="sec-no">06 — Pi &amp; Pooh Interview</p>
         </ScrollReveal>
         <DogInterview interview={interview} dogs={dogs} couple={couple} />
       </section>
 
       <section className="sec">
         <ScrollReveal>
-          <p className="sec-no">08 — Location</p>
+          <p className="sec-no">07 — Location</p>
         </ScrollReveal>
         <ScrollReveal delay={0.1}>
           <div className="venue">
             <p className="vn">{venue.name}</p>
             <p className="vh">{venue.hall}</p>
             <p className="va">{venue.address}</p>
-            <p className="vt">T. {venue.tel}</p>
           </div>
-          <div className="map-box">
-            <span>MAP</span>
-            <span>카카오 / 네이버 지도 연결 영역</span>
-          </div>
+          <a
+            className="map-box"
+            href={venue.mapUrl}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`${venue.name} 카카오맵으로 열기`}
+          >
+            <img
+              className="map-preview"
+              src={`https://map2.daum.net/map/mapservice?FORMAT=PNG&SCALE=${venue.mapPreview?.scale ?? 2.5}&MX=${venue.mapPreview.x}&MY=${venue.mapPreview.y}&CX=${venue.mapPreview.x}&CY=${venue.mapPreview.y}&IW=1280&IH=720&COORDST=2`}
+              alt={`${venue.name} 지도`}
+              loading="lazy"
+            />
+          </a>
           <div className="map-links">
             <a href={venue.mapUrl} target="_blank" rel="noreferrer">
               카카오맵
@@ -179,7 +190,7 @@ export default function InvitationContent() {
 
       <section className="sec">
         <ScrollReveal>
-          <p className="sec-no">09 — With Heart</p>
+          <p className="sec-no">08 — With Heart</p>
         </ScrollReveal>
         <AccountSection accounts={accounts} onCopy={copyText} />
       </section>

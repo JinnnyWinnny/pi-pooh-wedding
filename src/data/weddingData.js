@@ -4,8 +4,52 @@ import { assetUrl } from "../utils/assetUrl";
 const us = (file) => assetUrl(`us/${file}`);
 const mem = (file) => assetUrl(`mem/${file}`);
 
+// public/us 폴더 사진 — 파일명 숫자·가나다 순
+const galleryFiles = [
+  "1.jpg",
+  "2.jpg",
+  "2.5.jpg",
+  "3.jpg",
+  "4.jpg",
+  "5.jpg",
+  "6.jpg",
+  "i.jpg",
+  "ii.jpg",
+  "IMG_2879.jpg",
+  "IMG_2890.jpg",
+  "IMG_3177.jpg",
+  "IMG_4146.JPG",
+  "IMG_4147.JPG",
+  "IMG_4148.JPG",
+  "IMG_4149.JPG",
+  "IMG_4151.JPG",
+  "IMG_4152.JPG",
+  "IMG_4153.JPG",
+  "IMG_4154.JPG",
+  "j.jpg",
+  "jj9.jpg",
+  "jj11.jpg",
+  "jj12.jpg",
+  "k.jpg",
+  "k1.jpg",
+  "k2.jpg",
+  "KakaoTalk_20260714_130949910_01.jpg",
+  "KakaoTalk_20260714_130949910_02.jpg",
+  "KakaoTalk_20260714_130949910_03.jpg",
+  "KakaoTalk_20260714_130949910_07.jpg",
+  "KakaoTalk_20260714_130949910_09.jpg",
+  "KakaoTalk_20260714_130949910_10.jpg",
+  "KakaoTalk_20260714_130949910_11.jpg",
+  "KakaoTalk_20260714_130949910_13.jpg",
+  "KakaoTalk_20260714_130949910_14.jpg",
+  "KakaoTalk_20260714_130949910_18.jpg",
+  "KakaoTalk_20260714_152810311.jpg",
+  "q.jpg",
+  "z.jpg",
+];
+
 export const weddingData = {
-  heroImage: us("IMG_2877.jpg"),
+  heroImage: us("3.jpg"),
   couple: {
     groom: {
       name: "박석준",
@@ -18,7 +62,7 @@ export const weddingData = {
         "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80",
       bio: "1997년 02월 15일",
       subbio: "언제나 긍정적인 에너지로 우리 가족을 웃게 만드는 사람",
-      tags: ["ENFP", "인간 골댕이"],
+      tags: ["ENFP", "인간 골댕이", "축구", "테니스"],
     },
     bride: {
       name: "이지은",
@@ -30,8 +74,24 @@ export const weddingData = {
       photo: mem("jenny_baby.jpg"),
       bio: "1997년 02월 19일",
       subbio: "",
-      tags: ["ISTJ", "테니스"],
+      tags: ["ISTJ", "테니스", "영화", "운동"],
     },
+  },
+  // About Us — 같이 찍은 사진 + 서로가 본 한 줄
+  aboutUs: {
+    photo: us("j.jpg"),
+    sees: [
+      {
+        from: "지은",
+        of: "석준",
+        line: "배려, 긍정, 든든, 인간골댕이, 지은밖에 모름",
+      },
+      {
+        from: "석준",
+        of: "지은",
+        line: "이쁨, 멋짐, 사랑, 테니스여신",
+      },
+    ],
   },
   date: {
     year: 2026,
@@ -45,11 +105,12 @@ export const weddingData = {
   },
   venue: {
     name: "라포레홀",
-    hall: "더파티움 안양 7층",
-    address: "서울특별시 강남구 테헤란로 123",
-    tel: "02-1234-5678",
-    mapUrl: "https://map.kakao.com",
-    naverMapUrl: "https://map.naver.com",
+    hall: "안양 더파티움 7층",
+    address: "경기도 안양시 동안구 시민대로 311 금강스마트빌딩",
+    mapUrl: "https://place.map.kakao.com/138147430",
+    naverMapUrl: "https://naver.me/IFgdHqLz",
+    // 카카오맵 정적 미리보기 좌표 (WCONGNAMUL)
+    mapPreview: { x: 491920, y: 1082045, scale: 2.5 },
     parking: [
       {
         label: "제 1주차장",
@@ -84,20 +145,7 @@ export const weddingData = {
 소중한 분들을 모시고
 저희의 약속을 나누고자 하오니,
 귀한 걸음으로 함께해 주시면 감사하겠습니다.`,
-  gallery: [
-    { src: us("IMG_2376.jpg") },
-    { src: us("IMG_2383.JPG") },
-    { src: us("IMG_2647.jpg") },
-    { src: us("IMG_2876.jpg") },
-    { src: us("IMG_2877.jpg") },
-    { src: us("IMG_2879.jpg") },
-    { src: us("IMG_2880.jpg") },
-    { src: us("IMG_2885.jpg") },
-    { src: us("IMG_2890.jpg") },
-    { src: us("IMG_2917.jpg") },
-    { src: us("IMG_2918.jpg") },
-    { src: us("IMG_3177.jpg") },
-  ],
+  gallery: galleryFiles.map((file) => ({ src: us(file) })),
   accounts: {
     title: "마음 전하실곳",
     message:
@@ -107,13 +155,18 @@ export const weddingData = {
       items: [
         {
           bank: "국민은행",
-          number: "123-456-789012",
+          number: "35880204359124",
           holder: "박석준",
         },
         {
           bank: "국민은행",
-          number: "123-456-789013",
+          number: "60310101280292",
           holder: "박종철",
+        },
+        {
+          bank: "국민은행",
+          number: "47452501036446",
+          holder: "김묘진",
         },
       ],
     },
@@ -121,14 +174,19 @@ export const weddingData = {
       label: "신부측",
       items: [
         {
-          bank: "신한은행",
-          number: "110-123-456789",
+          bank: "카카오뱅크",
+          number: "3333326953920",
           holder: "이지은",
         },
         {
-          bank: "신한은행",
-          number: "110-123-456790",
+          bank: "하나은행",
+          number: "71381038084307",
           holder: "이상록",
+        },
+        {
+          bank: "전북은행",
+          number: "1021011686567",
+          holder: "명주현",
         },
       ],
     },
@@ -153,92 +211,6 @@ export const weddingData = {
       },
     ],
   },
-  memories: {
-    title: "만남에서 사랑으로",
-    subtitle: "우리를 만든 순간들",
-    coverImage: us("IMG_2876.jpg"),
-    moments: [
-      {
-        year: 2021,
-        title: "처음 데이트 장소",
-        body: "같이 한 첫번째 식사",
-        image: mem("firstdate.jpg"),
-      },
-      {
-        year: 2022,
-        title: "UCSD",
-        lines: ["같이 학교에서 보낸 300일"],
-        images: [
-          mem("library.jpg"),
-          mem("school2.jpg"),
-
-          mem("school3.jpg"),
-          mem("school.jpg"),
-        ],
-      },
-      {
-        year: 2022,
-        title: "새 가족",
-        lines: ["가족이 둘에서 셋으로. 파이야 환영해!"],
-        images: [
-          mem("pi4.jpg"),
-          mem("pi2.jpg"),
-          mem("pi1.jpg"),
-          mem("pi3.jpg"),
-        ],
-      },
-
-      {
-        year: 2022,
-        title: "대학 졸업",
-        lines: ["석준이의 서포트로 무사히 지은이 졸업"],
-        image: mem("graduation.jpg"),
-      },
-      {
-        year: 2022,
-        title: "크리스마스",
-        lines: ["같이 보낸 4번의 크리스마스"],
-        image: mem("christmas.jpg"),
-      },
-      {
-        year: 2023,
-        title: "새 차",
-        lines: ["공동명의 첫번째 새 차"],
-        image: mem("new car.jpg"),
-      },
-
-      {
-        year: 2023,
-        title: "여행",
-        lines: ["같이 간 150번의 여행"],
-        images: [mem("trip1.jpg"), mem("trip2.jpg"), mem("trip3.jpg")],
-      },
-      {
-        year: 2023,
-        title: "새가족",
-        lines: ["가족이 셋에서 넷으로. 푸야 환영해!"],
-        images: [mem("pooh1.jpg"), mem("pooh2.jpg"), mem("pooh3.jpg")],
-      },
-      {
-        year: 2023,
-        title: "네가족",
-        lines: ["우리가족"],
-        // cover: mem("main.jpg"),
-        images: [
-          mem("four2.jpg"),
-          mem("four1.jpg"),
-          mem("four3.jpg"),
-          mem("main.jpg"),
-        ],
-      },
-      {
-        year: 2024,
-        title: "혼인신고",
-        lines: ["July, 13th 2024"],
-        image: mem("mrg.jpg"),
-      },
-    ],
-  },
   interview: [
     {
       interviewer: "Pi",
@@ -252,7 +224,7 @@ export const weddingData = {
       groomAnswer:
         "혼자 야무지게 궂은 일을 해내는 모습을 보면서, 대신 궂은 일을 다 해주고 싶다는 생각이 들었어",
       brideAnswer:
-        "아침잠이 많고 잠귀가 밝은 나를 위해서 화장실도 다른 화장실을 쓰고 살금살금 문도 조용히 닫는 모습에 결혼을 결심했어",
+        "아침잠이 많고 잠귀가 밝은 나를 위해서 화장실도 멀리 있는걸 쓰고 살금살금 문도 조용히 닫고, 이사람이다 싶었지",
     },
     {
       interviewer: "Pi",
@@ -266,7 +238,7 @@ export const weddingData = {
       question: "둘이서 가장 좋아하는 시간은 언제야?",
       groomAnswer:
         "파이 푸가 행복하게 뛰는 모습을 보면서 같이 공원에서 산책하고 공놀이 할 때",
-      brideAnswer: "파이 푸랑 가는 Dog Beach & Road Trip! ",
+      brideAnswer: "파이 푸랑 공원에서 공놀이와 Dog beach! ",
     },
     {
       interviewer: "Pi",
@@ -280,7 +252,7 @@ export const weddingData = {
       groomAnswer:
         "소중한 시간 저희에게 할애해주셔서 감사합니다. 감사하고 베풀며 언제나 겸손한 부부가 되겠습니다 :)",
       brideAnswer:
-        "귀중한 시간 내어 와주셔서 감사합니다. 늘 겸손힌 마음으로 베풀고 도우며 사는 부부가 되겠습니다 :)",
+        "귀중한 시간 내어 와주셔서 감사합니다. 늘 겸손한 마음으로 베풀고 도우며 사는 부부가 되겠습니다 :)",
     },
   ],
 };

@@ -80,13 +80,19 @@ export default function DepartureScene({ onDepart }) {
       <motion.button
         className="intro-btn"
         onClick={onDepart}
-        whileTap={{ scale: 0.985 }}
+        whileTap={{ scale: 0.97 }}
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2.2, duration: 0.6 }}
       >
-        <b>파이 · 푸 따라가기</b>
-        <span className="tag">청첩장으로 →</span>
+        <span className="intro-btn-main">
+          <b>파이 · 푸 따라가기</b>
+          <span className="intro-btn-sub">청첩장 보러 가기</span>
+        </span>
+        <span className="intro-btn-hint" aria-hidden="true">
+          <span className="intro-btn-pulse" />
+          <span className="intro-btn-finger">👆</span>
+        </span>
       </motion.button>
     </section>
   );

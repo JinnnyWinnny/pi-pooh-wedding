@@ -1,51 +1,56 @@
 import ScrollReveal from "./ScrollReveal";
 import DogTreat from "./DogTreat";
 
-export default function AboutUs({ groom, bride, dogs }) {
-  const people = [
-    { role: "Groom", person: groom, preset: "left" },
-    { role: "Bride", person: bride, preset: "right" },
-  ];
+export default function AboutUs({ groom, bride, dogs, aboutUs }) {
+  const sees = aboutUs?.sees ?? [];
 
   return (
-    <div className="about-grid">
-      {people.map(({ role, person, preset }, i) => (
-        <ScrollReveal key={role} preset={preset} delay={i * 0.12}>
-          <article className="about-card">
-            <div className="about-photo">
-              <img src={person.photo} alt={person.name} />
-            </div>
-            <div className="about-body">
-              <p className="about-role">{role}</p>
-              <h3 className="about-name">
-                {person.name}
-                <span className="about-name-line">
-                  <span className="about-name-slash">/</span>{" "}
-                  {person.englishName}
-                </span>
-              </h3>
-              <p className="about-bio">{person.bio}</p>
-              {person.subbio && <p className="about-subbio">{person.subbio}</p>}
-              {person.tags?.length > 0 && (
-                <div className="about-tags">
-                  {person.tags.map((tag) => (
-                    <span key={tag} className="about-tag">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
-          </article>
-        </ScrollReveal>
-      ))}
+    <div className="about-us">
+      <ScrollReveal preset="fade">
+        <figure className="about-couple">
+          <img
+            src={aboutUs.photo}
+            alt={`${groom.name}와 ${bride.name}`}
+            className="about-couple-photo"
+          />
+          <figcaption className="about-couple-caption">
+            <p className="about-couple-label">Together</p>
+            <h3 className="about-couple-names">
+              {groom.name}
+              <span className="about-couple-amp">&</span>
+              {bride.name}
+            </h3>
+          </figcaption>
+        </figure>
+      </ScrollReveal>
 
-      <ScrollReveal preset="up" delay={0.24}>
-        <article className="about-card about-dogs-card">
-          <div className="about-body about-dogs-head">
-            <p className="about-role">🐾 Our Guide Dogs</p>
-            <h3 className="about-name">{dogs.namesKo}</h3>
-            <p className="about-bio">
+      {sees.length > 0 && (
+        <div className="about-sees">
+          <ScrollReveal delay={0.08}>
+            <p className="about-sees-label">서로를 말하는 한 줄</p>
+          </ScrollReveal>
+          {sees.map((item, i) => (
+            <ScrollReveal
+              key={`${item.from}-${item.of}`}
+              delay={0.12 + i * 0.1}
+            >
+              <blockquote className="about-see">
+                <p className="about-see-who">
+                  <b>{item.from}</b>이 보는 <b>{item.of}</b>
+                </p>
+                <p className="about-see-line">“{item.line}”</p>
+              </blockquote>
+            </ScrollReveal>
+          ))}
+        </div>
+      )}
+
+      <ScrollReveal preset="up" delay={0.22}>
+        <article className="about-dogs">
+          <div className="about-dogs-head">
+            <p className="about-dogs-label">🐾 Our Dogs</p>
+            <h3 className="about-dogs-names">{dogs.namesKo}</h3>
+            <p className="about-dogs-bio">
               {dogs.breed} · {dogs.tagline}
             </p>
           </div>
