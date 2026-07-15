@@ -1,4 +1,5 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { fetchTreatCount, incrementTreatCount } from "../utils/treatCounter";
 
 function makeBones() {
   return Array.from({ length: 14 }, (_, i) => ({
@@ -13,18 +14,62 @@ function makeBones() {
 
 export default function DogTreat() {
   const [bones, setBones] = useState([]);
-  const [treatCount, setTreatCount] = useState(0);
+  const [treatCount, setTreatCount] = useState(null);
   const timerRef = useRef(null);
+  const busyRef = useRef(false);
 
-  const giveTreat = useCallback(() => {
-    setTreatCount((n) => n + 1);
+  useEffect(() => {
+    let cancelled = false;
+
+    async function sync() {
+      try {
+        const n = await fetchTreatCount();
+        if (!cancelled) setTreatCount(n);
+      } catch {
+        if (!cancelled) setTreatCount((prev) => (prev == null ? 0 : prev));
+      }
+    }
+
+    sync();
+    const id = setInterval(sync, 12000);
+    const onVisible = () => {
+      if (document.visibilityState === "visible") sync();
+    };
+    document.addEventListener("visibilitychange", onVisible);
+
+    return () => {
+      cancelled = true;
+      clearInterval(id);
+      document.removeEventListener("visibilitychange", onVisible);
+    };
+  }, []);
+
+  const giveTreat = useCallback(async () => {
+    if (busyRef.current) return;
+    busyRef.current = true;
+
+    setTreatCount((n) => (n == null ? 1 : n + 1));
     if (timerRef.current) clearTimeout(timerRef.current);
     setBones(makeBones());
     timerRef.current = setTimeout(() => {
       setBones([]);
       timerRef.current = null;
     }, 1300);
+
+    try {
+      const n = await incrementTreatCount();
+      setTreatCount((prev) => Math.max(prev ?? 0, n));
+    } catch {
+      // keep optimistic count; next poll will reconcile
+    } finally {
+      // short lock so double-taps don't double-count
+      setTimeout(() => {
+        busyRef.current = false;
+      }, 350);
+    }
   }, []);
+
+  const display = treatCount == null ? "…" : treatCount;
 
   return (
     <div className="dog-treat">
@@ -60,7 +105,7 @@ export default function DogTreat() {
       </div>
 
       <p className="dog-treat-count" aria-live="polite">
-        얌얌 총 <b>{treatCount}</b>개의 간식을 받았어요!
+        얌얌 총 <b>{display}</b>개의 간식을 받았어요!
       </p>
     </div>
   );

@@ -1,10 +1,12 @@
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import DepartureScene from "./components/DepartureScene";
 import PawWalkScene from "./components/PawWalkScene";
 import InvitationContent from "./components/InvitationContent";
 import PawTrail from "./components/PawTrail";
 import BgmToggle from "./components/BgmToggle";
+import { weddingData } from "./data/weddingData";
+import { preloadImages, scheduleIdle } from "./utils/preloadImages";
 import "./App.css";
 
 const PHASES = {
@@ -27,6 +29,22 @@ export default function App() {
   useLayoutEffect(() => {
     resetScroll();
   }, [phase]);
+
+  // Prefetch gallery (+ hero/about) as soon as the site opens
+  useEffect(() => {
+    const galleryUrls = weddingData.gallery.map((item) => item.src);
+    const priority = [
+      weddingData.heroImage,
+      weddingData.aboutUs?.photo,
+      ...galleryUrls.slice(0, 8),
+    ];
+    const rest = galleryUrls.slice(8);
+
+    void preloadImages(priority, { concurrency: 3 });
+    scheduleIdle(() => {
+      void preloadImages(rest, { concurrency: 2 });
+    }, 1800);
+  }, []);
 
   const startJourney = () => {
     setBgmStartToken((n) => n + 1);

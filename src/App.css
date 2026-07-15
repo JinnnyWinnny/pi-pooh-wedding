@@ -1396,14 +1396,23 @@ input {
   font-weight: 600;
 }
 
-.about-see-line {
-  margin: 0.4rem 0 0;
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: 1.12rem;
-  line-height: 1.55;
+.about-see-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.65rem;
+}
+
+.about-see-tag {
+  display: inline-block;
+  padding: 0.32rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
   letter-spacing: -0.01em;
-  color: var(--ink);
+  color: var(--sea-deep);
+  background: rgba(31, 138, 166, 0.1);
+  border: 1px solid rgba(31, 138, 166, 0.18);
 }
 
 .about-dogs {
@@ -1584,10 +1593,6 @@ input {
   .about-couple-names {
     font-size: 1.35rem;
   }
-
-  .about-see-line {
-    font-size: 1.02rem;
-  }
 }
 
 /* message */
@@ -1708,14 +1713,61 @@ input {
   color: var(--ink-faint);
 }
 
+.gallery-progress {
+  padding: 0.55rem 0.15rem 0.35rem;
+  touch-action: none;
+  cursor: grab;
+  outline: none;
+}
+
+.gallery-progress:active {
+  cursor: grabbing;
+}
+
+.gallery-progress-track {
+  position: relative;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--line-soft);
+  overflow: visible;
+}
+
+.gallery-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent-soft), var(--accent));
+  min-width: 4%;
+  pointer-events: none;
+}
+
+.gallery-progress-paw {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.95rem;
+  line-height: 1;
+  filter: grayscale(0.1);
+  pointer-events: none;
+  user-select: none;
+}
+
 .gallery-strip {
   display: flex;
   gap: 0.4rem;
   overflow-x: auto;
-  padding: 0.15rem 0.1rem 0.35rem;
+  padding: 0.15rem 0.1rem 0.2rem;
   scroll-snap-type: x proximity;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
+  touch-action: pan-x;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.gallery-strip::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .gallery-strip-thumb {

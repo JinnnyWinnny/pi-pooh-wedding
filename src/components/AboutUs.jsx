@@ -27,19 +27,25 @@ export default function AboutUs({ groom, bride, dogs, aboutUs }) {
       {sees.length > 0 && (
         <div className="about-sees">
           <ScrollReveal delay={0.08}>
-            <p className="about-sees-label">서로를 말하는 한 줄</p>
+            <p className="about-sees-label">서로를 말하는 말들</p>
           </ScrollReveal>
           {sees.map((item, i) => (
             <ScrollReveal
               key={`${item.from}-${item.of}`}
               delay={0.12 + i * 0.1}
             >
-              <blockquote className="about-see">
+              <div className="about-see">
                 <p className="about-see-who">
                   <b>{item.from}</b>이 보는 <b>{item.of}</b>
                 </p>
-                <p className="about-see-line">“{item.line}”</p>
-              </blockquote>
+                <div className="about-see-tags">
+                  {(item.tags ?? []).map((tag) => (
+                    <span key={tag} className="about-see-tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </ScrollReveal>
           ))}
         </div>

@@ -8,8 +8,11 @@ export default function GalleryGrid({ items }) {
   const [index, setIndex] = useState(0);
   const [lightbox, setLightbox] = useState(null);
   const [paused, setPaused] = useState(false);
+  const [scrubbing, setScrubbing] = useState(false);
   const stripRef = useRef(null);
   const thumbRefs = useRef([]);
+  const progressRef = useRef(null);
+  const scrubbingRef = useRef(false);
 
   const len = items.length;
 
@@ -29,6 +32,36 @@ export default function GalleryGrid({ items }) {
     setLightbox((i) => (i === len - 1 ? 0 : i + 1));
   }, [len]);
 
+  const indexFromClientX = useCallback(
+    (clientX) => {
+      const track = progressRef.current;
+      if (!track || len < 2) return 0;
+      const rect = track.getBoundingClientRect();
+      const ratio = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
+      return Math.round(ratio * (len - 1));
+    },
+    [len],
+  );
+
+  const onProgressPointerDown = (e) => {
+    scrubbingRef.current = true;
+    setScrubbing(true);
+    setPaused(true);
+    e.currentTarget.setPointerCapture?.(e.pointerId);
+    setIndex(indexFromClientX(e.clientX));
+  };
+
+  const onProgressPointerMove = (e) => {
+    if (!scrubbingRef.current) return;
+    setIndex(indexFromClientX(e.clientX));
+  };
+
+  const onProgressPointerUp = () => {
+    scrubbingRef.current = false;
+    setScrubbing(false);
+    setPaused(false);
+  };
+
   // Autoplay slideshow
   useEffect(() => {
     if (paused || lightbox !== null || len < 2) return;
@@ -47,9 +80,9 @@ export default function GalleryGrid({ items }) {
     const left = el.offsetLeft - (strip.clientWidth - el.clientWidth) / 2;
     strip.scrollTo({
       left: Math.max(0, left),
-      behavior: "smooth",
+      behavior: scrubbing ? "auto" : "smooth",
     });
-  }, [index]);
+  }, [index, scrubbing]);
 
   // Lightbox keyboard + scroll lock
   useEffect(() => {
@@ -119,7 +152,59 @@ export default function GalleryGrid({ items }) {
             {String(index + 1).padStart(2, "0")}
             <span> / {String(len).padStart(2, "0")}</span>
           </p>
-          <p className="gallery-hint">탭하면 크게 볼 수 있어요</p>
+          <p className="gallery-hint">밀어서 넘기거나 발자국을 드래그해 보세요</p>
+        </div>
+
+        <div
+          className="gallery-progress"
+          ref={progressRef}
+          role="slider"
+          tabIndex={0}
+          aria-valuemin={1}
+          aria-valuemax={len}
+          aria-valuenow={index + 1}
+          aria-label="갤러리 진행 · 드래그해서 이동"
+          onPointerDown={onProgressPointerDown}
+          onPointerMove={onProgressPointerMove}
+          onPointerUp={onProgressPointerUp}
+          onPointerCancel={onProgressPointerUp}
+          onKeyDown={(e) => {
+            if (e.key === "ArrowLeft") {
+              e.preventDefault();
+              goPrev();
+            } else if (e.key === "ArrowRight") {
+              e.preventDefault();
+              goNext();
+            }
+          }}
+        >
+          <div className="gallery-progress-track">
+            <motion.div
+              className="gallery-progress-fill"
+              animate={{
+                width: `${((index + 1) / len) * 100}%`,
+              }}
+              transition={
+                scrubbing
+                  ? { duration: 0 }
+                  : { duration: 0.35, ease: [0.22, 1, 0.36, 1] }
+              }
+            />
+            <motion.span
+              className="gallery-progress-paw"
+              aria-hidden="true"
+              animate={{
+                left: `${(index / Math.max(len - 1, 1)) * 100}%`,
+              }}
+              transition={
+                scrubbing
+                  ? { duration: 0 }
+                  : { duration: 0.35, ease: [0.22, 1, 0.36, 1] }
+              }
+            >
+              🐾
+            </motion.span>
+          </div>
         </div>
 
         <div className="gallery-strip" ref={stripRef} role="list">
