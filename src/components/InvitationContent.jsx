@@ -217,6 +217,18 @@ export default function InvitationContent() {
           </p>
         </ScrollReveal>
       </section>
+
+      <footer className="inv-footer">
+        <p className="inv-footer-made">
+          Made with <span className="inv-footer-heart">🐾</span> by{" "}
+          {couple.groom.shortName} &amp; {couple.bride.shortName}
+        </p>
+        <p className="inv-footer-copy">
+          청첩장 제작 문의:{" "}
+          <a href="mailto:jneration.code@gmail.com">jneration.code@gmail.com</a>
+        </p>
+        <p className="inv-footer-copy inv-footer-year">© {date.year}</p>
+      </footer>
     </main>
   );
 }

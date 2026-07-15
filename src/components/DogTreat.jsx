@@ -12,9 +12,13 @@ function makeBones() {
   }));
 }
 
+const BEST_FRIEND_GOAL = 15;
+
 export default function DogTreat() {
   const [bones, setBones] = useState([]);
   const [treatCount, setTreatCount] = useState(null);
+  const [isBestFriend, setIsBestFriend] = useState(false);
+  const myTreatsRef = useRef(0);
   const timerRef = useRef(null);
   const busyRef = useRef(false);
 
@@ -49,6 +53,8 @@ export default function DogTreat() {
     busyRef.current = true;
 
     setTreatCount((n) => (n == null ? 1 : n + 1));
+    myTreatsRef.current += 1;
+    if (myTreatsRef.current >= BEST_FRIEND_GOAL) setIsBestFriend(true);
     if (timerRef.current) clearTimeout(timerRef.current);
     setBones(makeBones());
     timerRef.current = setTimeout(() => {
@@ -107,6 +113,19 @@ export default function DogTreat() {
       <p className="dog-treat-count" aria-live="polite">
         얌얌 총 <b>{display}</b>개의 간식을 받았어요!
       </p>
+
+      {isBestFriend && (
+        <div className="treat-bestie" role="status" aria-live="assertive">
+          <span className="treat-bestie-badge">🐶</span>
+          <p className="treat-bestie-msg">
+            간식을 <b>{BEST_FRIEND_GOAL}개</b>나 줬멍! 고마워 멍멍!
+            <br />
+            형아 누나한텐 <b>비밀</b>로 할 테니까
+            <br />
+            간식 더 줘요 멍멍!! 🐾
+          </p>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ScrollReveal from "./ScrollReveal";
 
 const WEEKDAYS = ["일", "월", "화", "수", "목", "금", "토"];
@@ -19,7 +19,10 @@ function useCountdown(targetDate) {
     tick();
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-  }, [targetDate]);
+    // depend on the primitive timestamp so a freshly-constructed Date
+    // with the same value doesn't retrigger the effect every render
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [targetDate.getTime()]);
 
   return left;
 }
@@ -37,7 +40,10 @@ function calcLeft(targetDate) {
 }
 
 export default function CountdownCalendar({ date, venue, groomShort, brideShort }) {
-  const target = new Date(date.year, date.month - 1, date.day, date.hour, date.minute, 0);
+  const target = useMemo(
+    () => new Date(date.year, date.month - 1, date.day, date.hour, date.minute, 0),
+    [date.year, date.month, date.day, date.hour, date.minute],
+  );
   const left = useCountdown(target);
 
   const daysInMonth = getDaysInMonth(date.year, date.month);

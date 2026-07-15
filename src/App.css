@@ -1563,6 +1563,72 @@ input {
   font-weight: 600;
 }
 
+.treat-bestie {
+  margin: 0.9rem auto 0.2rem;
+  max-width: 320px;
+  padding: 0.95rem 1.1rem;
+  border-radius: 16px;
+  background: linear-gradient(
+    145deg,
+    rgba(214, 178, 106, 0.16),
+    rgba(214, 178, 106, 0.05)
+  );
+  border: 1px solid rgba(214, 178, 106, 0.4);
+  box-shadow: 0 6px 26px rgba(214, 178, 106, 0.14);
+  animation: bestie-pop 0.55s cubic-bezier(0.18, 0.9, 0.32, 1.4) both;
+}
+
+.treat-bestie-badge {
+  display: inline-block;
+  font-size: 1.9rem;
+  line-height: 1;
+  animation: bestie-badge 1.6s ease-in-out infinite;
+}
+
+.treat-bestie-msg {
+  margin: 0.4rem 0 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  color: #d8bd82;
+}
+
+.treat-bestie-msg b {
+  color: #f0d489;
+  font-weight: 800;
+}
+
+@keyframes bestie-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes bestie-badge {
+  0%,
+  100% {
+    transform: rotate(-9deg) scale(1);
+  }
+  50% {
+    transform: rotate(9deg) scale(1.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .treat-bestie {
+    animation: none;
+  }
+  .treat-bestie-badge {
+    animation: none;
+  }
+}
+
 .treat-bone {
   position: absolute;
   left: 50%;
@@ -2389,6 +2455,42 @@ input {
   font-family: var(--mono);
   font-size: 0.72rem;
   letter-spacing: 0.14em;
+}
+
+.inv-footer {
+  text-align: center;
+  padding: 2rem 1.15rem 2.4rem;
+  border-top: 1px solid rgba(21, 33, 31, 0.1);
+}
+.inv-footer-made {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+}
+.inv-footer-heart {
+  font-family: initial;
+}
+.inv-footer-copy {
+  margin: 0.5rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+}
+.inv-footer-copy a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(21, 33, 31, 0.2);
+  transition: color 0.15s ease;
+}
+.inv-footer-copy a:hover {
+  color: var(--ink);
+}
+.inv-footer-year {
+  margin-top: 0.35rem;
+  opacity: 0.7;
 }
 
 @media (max-width: 380px) {
