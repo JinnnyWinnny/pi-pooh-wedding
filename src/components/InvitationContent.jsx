@@ -175,11 +175,29 @@ export default function InvitationContent() {
             <div className="parking">
               <p className="parking-title">주차 안내</p>
               <ul className="parking-list">
-                {venue.parking.map((lot, i) => (
+                {venue.parking.map((lot) => (
                   <li key={lot.label} className="parking-item">
                     <p className="parking-label">{lot.label}</p>
                     <p className="parking-name">{lot.name}</p>
                     <p className="parking-address">{lot.address}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {venue.shuttle?.length > 0 && (
+            <div className="shuttle">
+              <p className="shuttle-title">버스 시간 안내</p>
+              <p className="shuttle-note">
+                군산·익산에서 출발하는 대절 버스입니다.
+              </p>
+              <ul className="shuttle-list">
+                {venue.shuttle.map((bus) => (
+                  <li key={bus.label} className="shuttle-item">
+                    <p className="shuttle-city">{bus.label}</p>
+                    <p className="shuttle-place">{bus.name}</p>
+                    <p className="shuttle-time">{bus.time}</p>
                   </li>
                 ))}
               </ul>

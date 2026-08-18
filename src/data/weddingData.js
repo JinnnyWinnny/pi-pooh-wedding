@@ -23,24 +23,17 @@ const galleryFiles = [
   "IMG_4148.JPG",
   "IMG_4149.JPG",
   "IMG_4151.JPG",
-  "IMG_4152.JPG",
-  "IMG_4153.JPG",
   "IMG_4154.JPG",
-  "j.jpg",
   "jj9.jpg",
   "jj11.jpg",
   "jj12.jpg",
-  "k.jpg",
   "k1.jpg",
-  "k2.jpg",
   "KakaoTalk_20260714_130949910_01.jpg",
   "KakaoTalk_20260714_130949910_02.jpg",
   "KakaoTalk_20260714_130949910_03.jpg",
   "KakaoTalk_20260714_130949910_07.jpg",
   "KakaoTalk_20260714_130949910_09.jpg",
   "KakaoTalk_20260714_130949910_10.jpg",
-  "KakaoTalk_20260714_130949910_11.jpg",
-  "KakaoTalk_20260714_130949910_13.jpg",
   "KakaoTalk_20260714_130949910_14.jpg",
   "KakaoTalk_20260714_130949910_18.jpg",
   "KakaoTalk_20260714_152810311.jpg",
@@ -79,7 +72,7 @@ export const weddingData = {
   },
   // About Us — 같이 찍은 사진 + 서로가 본 태그
   aboutUs: {
-    photo: us("j.jpg"),
+    photo: us("iii.jpg"),
     sees: [
       {
         from: "지은",
@@ -131,6 +124,18 @@ export const weddingData = {
         label: "제 4주차장",
         name: "평촌칼라힐 주차빌딩 (2층이상)",
         address: "안양시 동안구 시민대로 312",
+      },
+    ],
+    shuttle: [
+      {
+        label: "군산 출발",
+        name: "공설운동장 앞 화물 주차장",
+        time: "오전 10시 30분 출발",
+      },
+      {
+        label: "익산 출발",
+        name: "배산체육공원",
+        time: "오전 11시 출발",
       },
     ],
   },
