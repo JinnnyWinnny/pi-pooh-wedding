@@ -185,8 +185,15 @@ export default function InvitationContent() {
               </ul>
             </div>
           )}
+        </ScrollReveal>
+      </section>
 
-          {venue.shuttle?.length > 0 && (
+      {venue.shuttle?.length > 0 && (
+        <section className="sec">
+          <ScrollReveal>
+            <p className="sec-no">08 — Shuttle Bus</p>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
             <div className="shuttle">
               <p className="shuttle-title">버스 시간 안내</p>
               <p className="shuttle-note">
@@ -202,13 +209,13 @@ export default function InvitationContent() {
                 ))}
               </ul>
             </div>
-          )}
-        </ScrollReveal>
-      </section>
+          </ScrollReveal>
+        </section>
+      )}
 
       <section className="sec">
         <ScrollReveal>
-          <p className="sec-no">08 — With Heart</p>
+          <p className="sec-no">09 — With Heart</p>
         </ScrollReveal>
         <AccountSection accounts={accounts} onCopy={copyText} />
       </section>
@@ -235,18 +242,6 @@ export default function InvitationContent() {
           </p>
         </ScrollReveal>
       </section>
-
-      <footer className="inv-footer">
-        <p className="inv-footer-made">
-          Made with <span className="inv-footer-heart">🐾</span> by{" "}
-          {couple.groom.shortName} &amp; {couple.bride.shortName}
-        </p>
-        <p className="inv-footer-copy">
-          청첩장 제작 문의:{" "}
-          <a href="mailto:jneration.code@gmail.com">jneration.code@gmail.com</a>
-        </p>
-        <p className="inv-footer-copy inv-footer-year">© {date.year}</p>
-      </footer>
     </main>
   );
 }
